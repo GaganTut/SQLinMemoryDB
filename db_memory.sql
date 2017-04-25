@@ -19,8 +19,8 @@ CREATE TABLE users (
 DROP TABLE IF EXISTS employer;
 
 CREATE TABLE employer (
-  abbreviation VARCHAR(2) NOT NULL,
-  name VARCHAR(30) NOT NULL
+  employerId VARCHAR(2) NOT NULL,
+  employerName VARCHAR(30) NOT NULL
 );
 
 INSERT INTO users (name, age, gender, employerId)
@@ -37,10 +37,25 @@ INSERT INTO users (name, age, gender, employerId)
   ('Kathy', 8, 'f', 'na'),
   ('Liam', 20, 'm', 'st');
 
-INSERT INTO employer (abbreviation, name)
+INSERT INTO employer (employerId, employerName)
   VALUES
     ('dv', 'DevLeague'),
     ('st', 'Student'),
     ('na', 'N/A');
 
-SELECT * FROM users;
+SELECT * FROM users
+  WHERE id = 5;
+
+SELECT MIN(age) FROM users;
+
+SELECT MAX(age) FROM users;
+
+SELECT * FROM users
+  WHERE gender = 'm';
+
+SELECT * FROM users
+  WHERE gender = 'f';
+
+SELECT * FROM users
+  INNER JOIN employer USING (employerId)
+  WHERE employerId = 'na';
